@@ -1,0 +1,60 @@
+arquivo = open("./THERING.txt", "r")
+texto = arquivo.read()
+
+texto_comprimido = open("./texto_comprimido.txt", "w")
+texto_descomprimido = open("./texto_descomprimido.txt", "w")
+
+espacos = 0
+frase_comprimida = ""
+
+#Criando a lista com as frases do arquivo
+#Comprimindo
+lista1 = []
+for linha in texto:
+    for caracter in linha:
+        lista1.append(caracter)
+        
+for caracter in lista1:
+    if caracter == " ":
+        espacos +=1
+    elif espacos > 0:
+        frase_comprimida += "x"
+        frase_comprimida += str(espacos)
+        espacos = 0
+    
+    if caracter != " ":
+        frase_comprimida += caracter
+        
+texto_comprimido.write(frase_comprimida)
+
+
+#Descomprimindo
+lista2 = []
+i = 0
+
+while i < len(frase_comprimida):
+    caracter_atual = frase_comprimida[i]
+    if caracter_atual == "x":
+        espacos_str = ""
+        j = i + 1
+        
+        while j < len(frase_comprimida) and frase_comprimida[j].isdigit():
+            espacos_str += frase_comprimida[j]
+            j +=1
+        espacos = int(espacos_str)
+        lista2.extend([" "] * espacos) 
+        i = j - 1
+    else:
+        lista2.append(caracter_atual)
+    i +=1
+    
+frase_descomprimida = "".join(lista2)
+
+texto_descomprimido.write(frase_descomprimida)
+
+print(lista2)
+
+#Fechando os arquivos
+arquivo.close()
+texto_comprimido.close()
+texto_descomprimido.close()  
