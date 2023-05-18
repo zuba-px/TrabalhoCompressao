@@ -41,8 +41,8 @@ while i < len(frase_comprimida):
         while j < len(frase_comprimida) and frase_comprimida[j].isdigit():
             espacos_str += frase_comprimida[j]
             j +=1
-        espacos = int(espacos_str)
-        lista2.extend([" "] * espacos) #Tirando essa linha o arquivo não sofre perda de dados porém é removido todos os espaços
+            espacos = int(espacos_str)
+            lista2.extend([" "] * espacos) #Tirando essa linha o arquivo não sofre perda de dados porém é removido todos os espaços
         i = j - 1 # Deixar - 1 o arquivo fica maior
         #i = j + 1 #Deixar + 1 o arquivo ficar menor doq o original porém com perda de dados
     else:
